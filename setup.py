@@ -2,7 +2,7 @@
 Flask-API
 --------------
 
-Flask-API allow to easily publish an API for you web application
+Flask-API allow you to easily build and publish an API for your Flask application
 """
 from setuptools import setup
 
@@ -13,7 +13,7 @@ setup(
     url = 'http://github.com/namlook/Flask-API',
     license='BSD',
     author='Nicolas Clairon',
-    description='A Flask extension simplifies to build and publish an API for a web application',
+    description='A Flask extension which allow to build and publish an API for a Flask application',
     long_description=__doc__,
     packages=['flaskext'],
     namespace_packages=['flaskext'],
