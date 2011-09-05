@@ -9,15 +9,11 @@ Flask-API allow you to easily build and publish an API for your Flask applicatio
 
 Installation
 ============
-The installation is thanks to the Python Package Index and `pip`_ really simple.
-
-.. code-block:: console
+The installation is thanks to the Python Package Index and `pip`_ really simple::
 
    $ pip install Flask-API
 
-If you only can use `easy_install` than use
-
-.. code-block:: console
+If you only can use `easy_install` than use::
 
    $ easy_install Flask-API
 
@@ -31,9 +27,7 @@ Flask-API requires to run some packages (they will be installed automatically if
 Building the API
 ================
 
-Building your API is simple, you just have to import the `api` decorator and decorate your views:
-
-.. code-block:: python
+Building your API is simple, you just have to import the `api` decorator and decorate your views::
 
     from flask import Flask, Blueprint, route
     from flaskext.api import api
@@ -57,9 +51,7 @@ This will return the created task id into the following json structure:
 Using the Client
 ================
 
-Now that the api is built, you can use the provided client to query it.
-
-.. code-block:: python
+Now that the api is built, you can use the provided client to query it::
 
     >>> from flaskext.api import Client
     >>> api = Client('http://localhost:5000')
