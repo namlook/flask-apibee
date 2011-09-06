@@ -55,6 +55,6 @@ Now that the api is built, you can use the provided client to query it::
 
     >>> from flaskext.api import Client
     >>> api = Client('http://localhost:5000')
-    >>> api.task.new(title="foo", description="bar")
+    >>> api.tasks.new(title="foo", description="bar")
     {"status": "ok", "result": "123", "time": 0.00022578239440917969}
 
