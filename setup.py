@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-API',
-    version='0.1',
+    version='0.2',
     url = 'http://github.com/namlook/Flask-API',
     license='BSD',
     author='Nicolas Clairon',
@@ -21,7 +21,6 @@ setup(
     platforms='any',
     install_requires=[
         'apibee',
-        'decorator',
     ],
     test_suite='tests.suite',
     classifiers=[

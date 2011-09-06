@@ -12,7 +12,6 @@
 from __future__ import absolute_import
 
 from flask import Response, request
-from decorator import decorator
 from time import time
 import traceback
 from flask import current_app
@@ -36,29 +35,34 @@ def _get_args(required, optional):
             apiargs[arg] = optional[arg]
     return apiargs
 
+from functools import wraps
 def api(required=None, optional=None):
     if required is None:
         required = {}
     if optional is None:
         optional = {}
-    def func(f, *a, **k):
-        results = {'status': None, 'result': None}
-        d = time()
-        try:
-            apiargs = _get_args(required, optional)
-            results['status'] = 'ok'
-            results['result'] = f(**apiargs)
-        except Exception, e:
-            results['status'] = e.__class__.__name__
-            results['result'] = unicode(e)
-            print traceback.format_exc()
-        f = time()
-        results['time'] = f-d
-        return Response(
-          json.dumps(results, default=current_app.config.get('JSON_DEFAULT', None)),#json_util.default),
-          content_type = 'application/json'
-        )
-    return decorator(func)
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            results = {'status': None, 'result': None}
+            start = time()
+            try:
+                apiargs = _get_args(required, optional)
+                results['status'] = 'ok'
+                results['result'] = f(**apiargs)
+            except Exception, e:
+                results['status'] = e.__class__.__name__
+                results['result'] = unicode(e)
+                print traceback.format_exc()
+            finish = time()
+            results['time'] = finish-start
+            return Response(
+              json.dumps(results, default=current_app.config.get('JSON_DEFAULT', None)),#json_util.default),
+              content_type = 'application/json'
+            )
+        return decorated_function
+    return decorator
+
 
 #
 # Api Client
